@@ -4,8 +4,8 @@ use PHPMailer\PHPMailer\Exception;
 use Dotenv\Dotenv;
 
 // Afficher les erreurs localement (désactiver en prod)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 // Headers JSON et CORS
 header('Content-Type: application/json; charset=utf-8');
