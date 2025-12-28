@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- Particles -->
+        <div class="particles" id="particles"></div>
+
+        <!-- Navigation -->
+        <nav>
+            <div class="container">
+                <div class="logo">My Portfolio</div>
+                <ul>
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#projects">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#cv">CV</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Home Section -->
+        <section id="home">
+            <div class="profile-img">👨‍💻</div>
+            <h1>Hello, i am Rani Derradj</h1>
+            <p class="subtitle">Développeur Web Full Stack</p>
+            <p class="intro-text">
+                Passionné par le développement web et la création d'expériences utilisateur exceptionnelles.
+                Je transforme des idées en applications web modernes et performantes.
+            </p>
+            <div class="skills">
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">PHP</span>
+                <span class="skill-tag">MySQL</span>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Mes Projets</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Projet E-commerce</h3>
+                    <p>Une plateforme e-commerce complète avec panier, paiement et gestion des stocks.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <a href="https://github.com/username/project" class="project-link" target="_blank">Voir sur GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Application Météo</h3>
+                    <p>Application météo moderne avec géolocalisation et prévisions sur 7 jours.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">API REST</span>
+                        <span class="tech-tag">CSS</span>
+                    </div>
+                    <a href="https://github.com/username/project" class="project-link" target="_blank">Voir sur GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Blog Personnel</h3>
+                    <p>Blog avec système de commentaires, recherche et catégories.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Bootstrap</span>
+                    </div>
+                    <a href="https://github.com/username/project" class="project-link" target="_blank">Voir sur GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Me Contacter</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Envoyer</button>
+            </form>
+        </section>
+
+        <!-- CV Section -->
+        <section id="cv">
+            <h2>My CV</h2>
+            <p>
+                Téléchargez mon CV au format PDF pour en savoir plus sur mon parcours.
+            </p>
+            <a href="assets/cv.pdf" class="cv-download" download>📄 Download my CV</a>
+        </section>
+        <script src="script.js"></script>
+    </body>
+</html>
