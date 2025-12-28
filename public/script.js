@@ -40,7 +40,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
 
         const text = await response.text(); // Récupère d'abord le texte brut
         console.log('Réponse brute:', text);
-        const result = JSON.parse(text);
+       
 
         try {
             result = JSON.parse(text); // Parse ensuite
