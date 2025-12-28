@@ -45,6 +45,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
         try {
             result = JSON.parse(text); // Parse ensuite
         } catch (parseError) {
+            console.error('Réponse brute du serveur:', text); 
             throw new Error('Impossible de parser la réponse JSON du serveur');
         }
 
