@@ -90,11 +90,15 @@ try {
     ]);
 
 } catch (Exception $e) {
+   $output = ob_get_contents(); // récupère tout ce qui a été envoyé
     ob_end_clean();
+
     echo json_encode([
         'success' => false,
-        'message' => $e->getMessage()
+        'message' => $e->getMessage(),
+        'debug' => $output // tout ce qui était “avant”
     ]);
+
 }
 
 exit;
