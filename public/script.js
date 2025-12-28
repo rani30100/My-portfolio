@@ -42,7 +42,6 @@ document.getElementById('contactForm').addEventListener('submit', async function
         console.log('Réponse brute:', text);
         const result = JSON.parse(text);
 
-        let result;
         try {
             result = JSON.parse(text); // Parse ensuite
         } catch (parseError) {
