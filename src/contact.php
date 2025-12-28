@@ -14,6 +14,8 @@ header('Access-Control-Allow-Origin: *');
 // ✅ Buffer pour éviter les sorties parasites
 ob_start();
 
+// 2️⃣ Charger .env si présent (local)
+$dotenvPath = __DIR__ . '/..';
 try {
     // 1️⃣ Autoload
     $autoloadPath = __DIR__ . '/../vendor/autoload.php';
@@ -22,11 +24,12 @@ try {
     }
     require $autoloadPath;
 
-    // 2️⃣ Charger .env si présent (local)
-    $dotenvPath = __DIR__ . '/..';
     if (file_exists($dotenvPath . '/.env')) {
         $dotenv = Dotenv::createImmutable($dotenvPath);
         $dotenv->safeLoad();
+    }else{
+     throw new Exception("Missing env");
+    
     }
 
     // 3️⃣ Vérifier les variables d'environnement nécessaires
@@ -90,6 +93,23 @@ try {
     ]);
 
 } catch (Exception $e) {
+
+    if (file_exists($dotenvPath . '/.env')) {
+        $dotenv = Dotenv::createImmutable($dotenvPath);
+        $dotenv->safeLoad();
+    }else{
+     throw new Exception("Missing env");
+    
+    }
+      // 3️⃣ Vérifier les variables d'environnement nécessaires
+    $requiredEnvVars = ['MAIL_HOST','MAIL_USERNAME','MAIL_PASSWORD','MAIL_PORT','MAIL_TO','MAIL_FROM_NAME'];
+    foreach ($requiredEnvVars as $var) {
+        if (empty($_ENV[$var])) {
+            throw new Exception("Missing env variable: $var");
+        }
+    }
+
+
    $output = ob_get_contents(); // récupère tout ce qui a été envoyé
     ob_end_clean();
 
