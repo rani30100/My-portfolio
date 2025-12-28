@@ -13,7 +13,6 @@ header('Access-Control-Allow-Origin: *');
 
 // Buffer pour éviter les sorties parasites
 ob_start();
-var_dump( $_ENV['MAIL_USERNAME']);
 
 try {
     // ✅ Composer autoload
