@@ -28,8 +28,12 @@ try {
         throw new Exception("Fichier .env introuvable");
     }
     
-    $dotenv = Dotenv::createImmutable($envPath);
-    $dotenv->safeLoad();
+    // 1️⃣ Charger Dotenv si fichier .env présent (local)
+    $dotenvPath = __DIR__ . '/..';
+    if (file_exists($dotenvPath . '/.env')) {
+        $dotenv = Dotenv::createImmutable($dotenvPath);
+        $dotenv->safeLoad();
+    }
 
     // Test 3: Vérifier les variables d'environnement
     $requiredEnvVars = ['MAIL_HOST', 'MAIL_USERNAME', 'MAIL_PASSWORD', 'MAIL_PORT', 'MAIL_TO', 'MAIL_FROM_NAME'];
