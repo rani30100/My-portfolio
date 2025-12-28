@@ -18,8 +18,11 @@ document.getElementById('contactForm').addEventListener('submit', async function
     
     const button = this.querySelector('button');
     const originalText = button.textContent;
+    const formMessage = document.getElementById('formMessage');
+
     button.textContent = 'Envoi en cours... ⏳';
     button.disabled = true;
+    formMessage.textContent = '';
 
     const formData = new FormData(this);
     const data = {
@@ -29,30 +32,41 @@ document.getElementById('contactForm').addEventListener('submit', async function
     };
 
     try {
-    const response = await fetch('../src/contact.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    });
+        const response = await fetch('../src/contact.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
 
-    const text = await response.text(); // 👈 Récupère d'abord le texte brut
-    console.log('Réponse brute:', text); // 👈 Affiche la réponse
+        const text = await response.text(); // Récupère d'abord le texte brut
+        console.log('Réponse brute:', text);
 
-    const result = JSON.parse(text); // 👈 Parse ensuite
-    
-    if (result.success) {
-        button.textContent = 'Message envoyé ! ✅';
-        button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-        this.reset();
-    } else {
-        console.error('Erreur serveur:', result.message);
-        button.textContent = 'Erreur ❌';
-        button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-    }
+        let result;
+        try {
+            result = JSON.parse(text); // Parse ensuite
+        } catch (parseError) {
+            throw new Error('Impossible de parser la réponse JSON du serveur');
+        }
+
+        if (result.success) {
+            button.textContent = 'Message envoyé ! ✅';
+            button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            this.reset();
+            formMessage.style.color = '#059669';
+            formMessage.textContent = result.message;
+        } else {
+            console.error('Erreur serveur:', result.message);
+            button.textContent = 'Erreur ❌';
+            button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            formMessage.style.color = '#dc2626';
+            formMessage.textContent = result.message;
+        }
     } catch (error) {
         console.error('Erreur complète:', error);
         button.textContent = 'Erreur ❌';
         button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+        formMessage.style.color = '#dc2626';
+        formMessage.textContent = error.message;
     }
 
     // Remise à l’état initial du bouton après 2s
@@ -62,6 +76,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
         button.style.background = '';
     }, 2000);
 });
+
 
 
     // Animation au scroll pour les cartes de projets
